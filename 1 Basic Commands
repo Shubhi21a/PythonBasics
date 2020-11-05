@@ -1,0 +1,66 @@
+import pyodbc
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server=11.11.11.11,44444;'
+                      'Database=Database_name;'
+                      'Trusted_Connection=yes;')
+
+cursor = conn.cursor()
+# server - host ip with instance
+
+df1=pd.read_sql_query("""SELECT * from table_name """,conn)
+
+type(df1) # class
+
+df1.info() # type of variable + some more details
+
+df1.isnull().sum() # sum of NaN by column
+
+table=pd.DataFrame(df1)
+type(table)
+
+table.head() # shows 5 records by default
+
+# https://kanoki.org/2020/01/21/pandas-dataframe-filter-with-multiple-conditions/
+# https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html
+# https://datatofish.com/check-nan-pandas-dataframe/
+
+table=table.fillna(0) #https://datatofish.com/replace-nan-values-with-zeros/
+
+table.head(3)
+
+table.isnull().sum().sum() # overall in the whole df
+print(table.columns)
+
+table.columns = ['id','T7','T6','T5','T4','T3','T2','T1'] # Giving a list with new column names
+
+table.dtypes # object means string
+# print (df['Prices'].dtypes) # https://datatofish.com/data-type-pandas-dataframe/
+
+
+# create a list of our conditions # e.g. taken from https://www.dataquest.io/blog/tutorial-add-column-pandas-dataframe-based-on-if-else-condition/
+conditions = [
+(df['likes_count'] <= 2),
+    (df['likes_count'] > 2) & (df['likes_count'] <= 9),
+    (df['likes_count'] > 9) & (df['likes_count'] <= 15),
+    (df['likes_count'] > 15)
+    ]
+# create a list of the values we want to assign for each condition
+values = ['tier_4', 'tier_3', 'tier_2', 'tier_1']
+# create a new column and use np.select to assign values to it using our lists as arguments
+df['tier'] = np.select(conditions, values)
+
+# more suited when there are multiple choices, np.where can for simple if else scenarios
+conditions_flag=[ ((table2['T7'] >0) & (table2['T6'] ==0) )] 
+conditions_month=[ (((table2['T7'] >0) & (table2['T6'] ==0) ))| (table2['T6']>0),default=np.nan]  # default tells what happens in case of else, if no condition is met
+Flag = [1]
+Month = ['T6']
+table2['Flag_T6'] = np.select(conditions_flag,Flag)
+table2['Month_T6'] = np.select(conditions_month,Month)
+table2.head()
+
+T6= table2[table2.AtkMonth_T6=='T6']
+T6.shape # to get dimensions of df 
+
+T6= table2[['id','Flag_T6','Month_T6']] # subsetting columns
+
+T6.columns = ['id','Flag','Month'] # Giving a list with new column names
