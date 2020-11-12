@@ -64,3 +64,7 @@ T6.shape # to get dimensions of df
 T6= table2[['id','Flag_T6','Month_T6']] # subsetting columns
 
 T6.columns = ['id','Flag','Month'] # Giving a list with new column names
+
+
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html
+q1 = q1.dropna(subset=['id']) # removing the records with NA in id column
