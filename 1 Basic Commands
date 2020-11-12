@@ -87,3 +87,5 @@ T6.columns = ['id','Flag','Month'] # Giving a list with new column names
 q1 = q1.dropna(subset=['id']) # removing the records with NA in id column
 
 df.reg_status.value_counts() # to get unique value counts/ like table
+
+del df_name
