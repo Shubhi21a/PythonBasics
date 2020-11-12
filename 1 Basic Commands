@@ -2,10 +2,15 @@ import pyodbc
 conn = pyodbc.connect('Driver={SQL Server};'
                       'Server=11.11.11.11,44444;'
                       'Database=Database_name;'
-                      'Trusted_Connection=yes;')
+                      'Trusted_Connection=yes;')      
 
 cursor = conn.cursor()
 # server - host ip with instance
+
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+
+pd.options.display.float_format = '{:.2f}'.format # to remove scientific notation, float with 2 decimal points
 
 os.chdir("D:\\Folder1\\subfolder") # path to file
 os.getcwd()
