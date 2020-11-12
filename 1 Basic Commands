@@ -52,6 +52,7 @@ table.columns = ['id','T7','T6','T5','T4','T3','T2','T1'] # Giving a list with n
 table.dtypes # object means string
 # print (df['Prices'].dtypes) # https://datatofish.com/data-type-pandas-dataframe/
 
+df2= df.drop(['T12','T11','T10','T9','T8','T7','T6','T5','T4','T3','T2'],axis=1)
 
 # create a list of our conditions # e.g. taken from https://www.dataquest.io/blog/tutorial-add-column-pandas-dataframe-based-on-if-else-condition/
 conditions = [
