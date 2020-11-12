@@ -7,6 +7,14 @@ conn = pyodbc.connect('Driver={SQL Server};'
 cursor = conn.cursor()
 # server - host ip with instance
 
+os.chdir("D:\\Folder1\\subfolder") # path to file
+os.getcwd()
+
+input1 = pd.read_csv("df_name.csv",converters = {'id':str},quoting=3)
+
+os.getcwd()
+file2.to_csv("dfName.csv",index=False)
+
 df1=pd.read_sql_query("""SELECT * from table_name """,conn)
 
 type(df1) # class
