@@ -54,6 +54,11 @@ table.dtypes # object means string
 
 df2= df.drop(['T12','T11','T10','T9','T8','T7','T6','T5','T4','T3','T2'],axis=1)
 
+
+df['Growth10'] =df[['M12','M23','M34','M45','M56']].apply(lambda x:(x>=0.1).sum(),axis=1) # count gives 5 for each record
+df['Growth50']= df[df[['M12','M23','M34','M45','M56']]>=0.5].count(axis=1)
+
+
 # create a list of our conditions # e.g. taken from https://www.dataquest.io/blog/tutorial-add-column-pandas-dataframe-based-on-if-else-condition/
 conditions = [
 (df['likes_count'] <= 2),
