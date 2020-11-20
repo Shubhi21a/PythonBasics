@@ -98,3 +98,5 @@ del df_name
 wrong_ids = ['NA','NULL','0','aa','bb']
 f1['col1']= f1['col1'].str.lower()  ## to lower
 f1['flag']= np.where(((f1['col1'].isin(wrong_ids)).any() or (f1['col1'].isnull())),1,0)
+
+f1['null_flag'] = np.where(f1['col2'].isnull(),1,0)
