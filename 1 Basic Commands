@@ -93,12 +93,26 @@ q1 = q1.dropna(subset=['id']) # removing the records with NA in id column
 
 df.reg_status.value_counts() # to get unique value counts/ like table
 
-del df_name
+del df_name  ### deleting
 
 wrong_ids = ['NA','NULL','0','aa','bb']
-f1['col1']= f1['col1'].str.lower()  ## to lower
+f1['col1']= f1['col1'].str.lower()  ## to lower ======
 f1['flag']= np.where(((f1['col1'].isin(wrong_ids)).any() or (f1['col1'].isnull())),1,0)
 
 f1['null_flag'] = np.where(f1['col2'].isnull(),1,0)
 
 f2 = f1.drop(['col2','col3'],axis=1) # removing selected columns
+
+
+## quantiles======
+f2['M1'].quantile([0.005,0.001])
+
+# contains, subseting using keyword in column names========
+sel_col= df.loc[:,(df.columns.str.contains('M1')| df.columns.str.contains('M2')|df.columns.str.contains('M3') |
+ df.columns.str.contains('Q1') | df.columns.str.contains('Q2') | df.columns.str.contains('change'))]
+    
+col_list = sel_col.columns  
+type(col_list)
+
+chk_outlier = sel_col[col_list].quantile([0,0.001,0.005,0.01,0.05,0.1,0.5,0.9, 0.95, 0.975, 0.99, 0.995, 0.999, 1])  
+chk_outlier2 = chk_outlier.transpose()  ## transposing the df
