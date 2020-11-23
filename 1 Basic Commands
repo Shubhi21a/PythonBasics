@@ -126,3 +126,10 @@ chk_outlier3 = chk_outlier.transpose()
 for i in col_list2:
     p99 = df[i].quantile(0.99)
     df[i]= np.where(df[i]>p99,p99,df[i])   
+    
+    
+## if while reading file, the column names have "" around them ######
+#df.columns = df.columns.str.strip('"') 
+# https://stackoverflow.com/questions/40866500/first-column-name-is-circled-by-double-quote-after-reading-from-csv
+# if the column (let's say id column) also has "" around each record
+df.id = df.id.str.strip('"')
