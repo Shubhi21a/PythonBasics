@@ -116,3 +116,13 @@ type(col_list)
 
 chk_outlier = sel_col[col_list].quantile([0,0.001,0.005,0.01,0.05,0.1,0.5,0.9, 0.95, 0.975, 0.99, 0.995, 0.999, 1])  
 chk_outlier2 = chk_outlier.transpose()  ## transposing the df
+
+chk_cat = sel_col.select_dtypes(include=["object"]) # checking to see 
+col_list = sel_col.columns 
+
+chk_outlier = sel_col[col_list].quantile([0,0.001,0.005,0.01,0.05,0.1,0.5,0.9, 0.95, 0.975, 0.99, 0.995, 0.999, 1])  
+chk_outlier3 = chk_outlier.transpose()
+
+for i in col_list2:
+    p99 = df[i].quantile(0.99)
+    df[i]= np.where(df[i]>p99,p99,df[i])   
