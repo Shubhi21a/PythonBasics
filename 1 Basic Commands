@@ -140,3 +140,13 @@ nulls_f2.reset_index(inplace=True) # converts index into a separate column, now 
 # https://stackoverflow.com/questions/44773714/convert-index-to-column-pandas-dataframe
 nulls_f2.columns = ['ColumnName','Nulls']
 nulls_f2['propNulls']= nulls_f2['Nulls']/f2.shape[0]
+
+
+### correlation
+df_numeric=df._get_numeric_data().drop(['AtRiskFlag'],axis=1)
+df_categorical=df.select_dtypes(exclude=["number","bool_"])
+
+#For numeric data
+correlation_matrix_n=pd.DataFrame(df_numeric.corr())
+corr_mat1 = correlation_matrix_n.stack().reset_index()
+corr_mat1.columns = ['var1','var2','correlation']
