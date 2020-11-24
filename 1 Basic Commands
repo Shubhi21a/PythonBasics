@@ -139,3 +139,4 @@ nulls_f2 = df.isnull().sum().to_frame()
 nulls_f2.reset_index(inplace=True) # converts index into a separate column, now column names appear as a column & not in index
 # https://stackoverflow.com/questions/44773714/convert-index-to-column-pandas-dataframe
 nulls_f2.columns = ['ColumnName','Nulls']
+nulls_f2['propNulls']= nulls_f2['Nulls']/f2.shape[0]
