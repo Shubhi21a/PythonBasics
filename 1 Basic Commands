@@ -133,3 +133,9 @@ for i in col_list2:
 # https://stackoverflow.com/questions/40866500/first-column-name-is-circled-by-double-quote-after-reading-from-csv
 # if the column (let's say id column) also has "" around each record
 df.id = df.id.str.strip('"')
+
+
+nulls_f2 = df.isnull().sum().to_frame()
+nulls_f2.reset_index(inplace=True) # converts index into a separate column, now column names appear as a column & not in index
+# https://stackoverflow.com/questions/44773714/convert-index-to-column-pandas-dataframe
+nulls_f2.columns = ['ColumnName','Nulls']
