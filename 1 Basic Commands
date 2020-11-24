@@ -143,7 +143,7 @@ nulls_f2['propNulls']= nulls_f2['Nulls']/f2.shape[0]
 
 
 ### correlation
-df_numeric=df._get_numeric_data().drop(['AtRiskFlag'],axis=1)
+df_numeric=df._get_numeric_data().drop(['Dependent_Var'],axis=1)
 df_categorical=df.select_dtypes(exclude=["number","bool_"])
 
 #For numeric data
