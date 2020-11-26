@@ -151,10 +151,18 @@ correlation_matrix_n=pd.DataFrame(df_numeric.corr())
 corr_mat1 = correlation_matrix_n.stack().reset_index()
 corr_mat1.columns = ['var1','var2','correlation']
 
+########## filtering 
 # https://stackoverflow.com/questions/17097643/search-for-does-not-contain-on-a-dataframe-in-pandas
 f2 = f2[~f2['State'].str.contains("Pradesh") ]
 
 # https://stackoverflow.com/questions/12065885/filter-dataframe-rows-if-value-in-column-is-in-a-set-list-of-values
 Segments=[105,301,403,316,418,619]
 f2= f2[f2['seg'].isin (Segments)]
+
+########## change data type
+# https://www.geeksforgeeks.org/change-data-type-for-one-or-more-columns-in-pandas-dataframe/
+# using apply method 
+df[['A', 'C']] = df[['A', 'C']].apply(pd.to_numeric) 
+
+# https://stackoverflow.com/questions/15891038/change-column-type-in-pandas
 
