@@ -165,4 +165,11 @@ f2= f2[f2['seg'].isin (Segments)]
 df[['A', 'C']] = df[['A', 'C']].apply(pd.to_numeric) 
 
 # https://stackoverflow.com/questions/15891038/change-column-type-in-pandas
+f2['seg'] = f2['seg'].astype('int64')
+f2['seg'] = f2['seg'].astype('object')
+
+##### dropping basis nan in  a prticular col
+f2= f2.dropna(subset=['seg'])
+
+
 
