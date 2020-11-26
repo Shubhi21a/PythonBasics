@@ -150,3 +150,11 @@ df_categorical=df.select_dtypes(exclude=["number","bool_"])
 correlation_matrix_n=pd.DataFrame(df_numeric.corr())
 corr_mat1 = correlation_matrix_n.stack().reset_index()
 corr_mat1.columns = ['var1','var2','correlation']
+
+# https://stackoverflow.com/questions/17097643/search-for-does-not-contain-on-a-dataframe-in-pandas
+f2 = f2[~f2['State'].str.contains("Pradesh") ]
+
+# https://stackoverflow.com/questions/12065885/filter-dataframe-rows-if-value-in-column-is-in-a-set-list-of-values
+Segments=[105,301,403,316,418,619]
+f2= f2[f2['seg'].isin (Segments)]
+
