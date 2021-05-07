@@ -1,1 +1,2 @@
 pwd # tells working directory
+df=pd.read_csv("path/filename.csv",header=0) # header is in first row/ row 0
