@@ -1,2 +1,29 @@
+## File input
 pwd # tells working directory
 df=pd.read_csv("path/filename.csv",header=0) # header is in first row/ row 0
+
+# to read file from github into google collab, Go to the data in github and click on View Raw. Copy that url, and put it in read_csv
+file_url = "https://raw.githubusercontent.com/Shubhi21a/path_to_data/file.csv"
+# https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92
+
+df = pd.read_csv(file_url, parse_dates=['Date_col'])
+
+## Data exploration/checks
+df['col1'].value_counts()
+
+(df['col1'] != df['col2']).sum()
+
+df['col1']= df['col1']*1.05
+df['col1'] *= 1.05  # both do the same thing
+
+df.loc[df['cat1']=='A','col1'].mean() # gettting mean of col1 where cat1 belongs to group A
+
+df.loc[(df['cat1']== 'B' | df['col2']> 45)].shape[0] # how many records belong to cat B or have col2>45
+
+df.loc[df['cat1']=='A','col1'] *= 1.1  # for this category, increasing by 10%
+
+## Visualization
+df['col'].plot(kind='box') # boxplot
+df['col'].plot(kind='scatter') # boxplot
+df['col'].plot(kind='kde', figsize=(14,6)) # for density plot. figsize is optional. if nothing is specified, default is [6.4, 4.8]
+
