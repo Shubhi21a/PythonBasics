@@ -1,4 +1,4 @@
-## File input
+#=========================================== File input  =====================================================
 pwd # tells working directory
 df=pd.read_csv("path/filename.csv",header=0) # header is in first row/ row 0
 
@@ -8,7 +8,8 @@ file_url = "https://raw.githubusercontent.com/Shubhi21a/path_to_data/file.csv"
 
 df = pd.read_csv(file_url, parse_dates=['Date_col'])
 
-## Data exploration/checks
+#=========================================== Data exploration/checks ===========================================
+
 df['col1'].value_counts()
 
 (df['col1'] != df['col2']).sum()
@@ -22,7 +23,12 @@ df.loc[(df['cat1']== 'B' | df['col2']> 45)].shape[0] # how many records belong t
 
 df.loc[df['cat1']=='A','col1'] *= 1.1  # for this category, increasing by 10%
 
-## Visualization
+
+#=========================================== Visualization  =====================================================
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
 df['col'].plot(kind='box') # boxplot
 df['col'].plot(kind='scatter') # boxplot
 df['col'].plot(kind='kde', figsize=(14,6)) # for density plot. figsize is optional. if nothing is specified, default is [6.4, 4.8]
