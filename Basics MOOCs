@@ -32,6 +32,10 @@ import matplotlib.pyplot as plt
 
 df['col'].plot(kind='scatter') # scatter plot
 
+df['col'].plot(kind='hist') # histogram
+df['col'].plot(kind='hist', bins=30) # can specify bins for histogram, default = 10
+# https://data36.com/plot-histogram-python-pandas/
+
 df['col'].plot(kind='box') # boxplot
 df['col'].plot(kind='box', vert=False,, figsize=(14,6)) # boxplot, vert= False makes a horizontal scatter plot. Default is a vertical one.
 
