@@ -10,7 +10,7 @@ df = pd.read_csv(file_url, parse_dates=['Date_col'])
 
 #=========================================== Data exploration/checks ===========================================
 
-df['col1'].value_counts()
+df['cat1'].value_counts() # like table in R, will give you count for column specified, cat1- 20, cat2- 30 etc. Does it count nulls/NAs?-- check
 df['col1'].mean()
 
 (df['col1'] != df['col2']).sum()
