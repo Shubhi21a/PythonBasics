@@ -29,7 +29,10 @@ df.loc[df['cat1']=='A','col1'] *= 1.1  # for this category, increasing by 10%
 import matplotlib.pyplot as plt
 %matplotlib inline
 
+df['col'].plot(kind='scatter') # scatter plot
+
 df['col'].plot(kind='box') # boxplot
-df['col'].plot(kind='scatter') # boxplot
-df['col'].plot(kind='kde', figsize=(14,6)) # for density plot. figsize is optional. if nothing is specified, default is [6.4, 4.8]
+df['col'].plot(kind='box', vert=False,, figsize=(14,6)) # boxplot, vert= False makes a horizontal scatter plot. Default is a vertical one.
+
+df['col'].plot(kind='kde', figsize=(10,6)) # for density plot. figsize is optional. if nothing is specified, default is [6.4, 4.8]
 
