@@ -41,3 +41,5 @@ df['col'].plot(kind='box', vert=False,, figsize=(14,6)) # boxplot, vert= False m
 
 df['col'].plot(kind='kde', figsize=(10,6)) # for density plot. figsize is optional. if nothing is specified, default is [6.4, 4.8]
 
+df['col'].value_counts().plot(kind='pie')
+
