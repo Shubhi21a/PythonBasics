@@ -38,6 +38,11 @@ sales['Calculated_Date'] = sales[['Year', 'Month', 'Day']].apply(lambda x: '{}-{
 #  2013-November-26
 #  2015-November-26
 
+sales['Calculated_Date']= pd.to_datetime(sales['Calculated_Date'])
+output
+#  2013-11-26
+#  2015-11-26
+
 
 #=========================================== Visualization  =====================================================
 
