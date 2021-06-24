@@ -12,6 +12,8 @@ df = pd.read_csv(file_url, parse_dates=['Date_col'])
 
 df['cat1'].value_counts() # like table in R, will give you count for column specified, cat1- 20, cat2- 30 etc. Does it count nulls/NAs?-- check
 df['cat1'].value_counts().head(1) # shows the first entry. Sorted by value desc, so we get the max value_count field 
+df['cat1'].value_counts().head(10) # top 10 entries by count 
+
 df['cat1'].unique() # creates a list f unique entries
 
 # Aggregations
@@ -48,4 +50,6 @@ df['col'].plot(kind='kde', figsize=(10,6)) # for density plot. figsize is option
 df['col'].value_counts().plot(kind='pie')
 
 df['cat1'].value_counts().plot(kind='bar')
+
+df['cat1'].value_counts().head(10).plot(kind='bar') # creates bar plot of top 10 categories by count
 
