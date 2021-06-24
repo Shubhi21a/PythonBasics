@@ -11,6 +11,8 @@ df = pd.read_csv(file_url, parse_dates=['Date_col'])
 #=========================================== Data exploration/checks ===========================================
 
 df['cat1'].value_counts() # like table in R, will give you count for column specified, cat1- 20, cat2- 30 etc. Does it count nulls/NAs?-- check
+sales['cat1'].value_counts().head(1) # shows the first entry. Sorted by value desc, so we get the max value_count field 
+
 df['col1'].mean()
 
 (df['col1'] != df['col2']).sum()
