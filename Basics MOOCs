@@ -31,6 +31,14 @@ df.loc[(df['cat1']== 'B' | df['col2']> 45)].shape[0] # how many records belong t
 df.loc[df['cat1']=='A','col1'] *= 1.1  # for this category, increasing by 10%
 
 
+# new columns
+sales['Calculated_Date']=sales['Year'].map(str)+ "-" + sales['Month'] + "-" + sales['Day'].map(str)
+sales['Calculated_Date'] = sales[['Year', 'Month', 'Day']].apply(lambda x: '{}-{}-{}'.format(x[0], x[1], x[2]), axis=1)
+# output
+#  2013-November-26
+#  2015-November-26
+
+
 #=========================================== Visualization  =====================================================
 
 import matplotlib.pyplot as plt
@@ -52,4 +60,9 @@ df['col'].value_counts().plot(kind='pie')
 df['cat1'].value_counts().plot(kind='bar')
 
 df['cat1'].value_counts().head(10).plot(kind='bar') # creates bar plot of top 10 categories by count
+
+df.plot(kind='scatter',x='x_var',y='y_var')
+
+df[['val1','cat1']].boxplot(by='cat1')
+
 
