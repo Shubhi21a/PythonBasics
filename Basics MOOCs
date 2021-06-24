@@ -43,3 +43,5 @@ df['col'].plot(kind='kde', figsize=(10,6)) # for density plot. figsize is option
 
 df['col'].value_counts().plot(kind='pie')
 
+df['cat1'].value_counts().plot(kind='bar')
+
