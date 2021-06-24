@@ -2,6 +2,9 @@
 pwd # tells working directory
 df=pd.read_csv("path/filename.csv",header=0) # header is in first row/ row 0
 
+# Practice
+# https://colab.research.google.com/github/Shubhi21a/FreeCodeCamp-Pandas-Real-Life-Example/blob/master/Exercises_1.ipynb#scrollTo=wcu2PBdPjays
+
 # to read file from github into google collab, Go to the data in github and click on View Raw. Copy that url, and put it in read_csv
 file_url = "https://raw.githubusercontent.com/Shubhi21a/path_to_data/file.csv"
 # https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92
@@ -27,6 +30,12 @@ df['col1'] *= 1.05  # both do the same thing
 #df['col1'] = df['col1'] + 50
 df['col1'] += 50
 
+# Add 7.2% TAX on every sale Unit_Price within United States
+#sales.loc[sales['Country'] == 'United States', 'Unit_Price'] = sales.loc[sales['Country'] == 'United States', 'Unit_Price'] * 1.072
+sales.loc[sales['Country'] == 'United States', 'Unit_Price'] *= 1.072
+
+
+##### loc=====
 df.loc[df['cat1']=='A','col1'].mean() # gettting mean of col1 where cat1 belongs to group A
 
 df.loc[(df['cat1']== 'B' | df['col2']> 45)].shape[0] # how many records belong to cat B or have col2>45
@@ -40,8 +49,44 @@ df.loc[df['cat1']=='A','col1'] *= 1.1  # for this category, increasing by 10%
 # step 2. df.loc[(condition1)|(condition2)].shape[0]  # the conditions should be enclosed in (), can get wrong result otherwise
 # step 3. df.loc[(df['Country']=="Canada")|(df['Country']=="France")].shape[0]
 
+sales.loc[(sales['Month']=="May")&(sales['Year']==2016)].shape[0] # sales in MAY 2016
 
-# new columns
+df.loc[df['Country']=="France","State"].value_counts() # Gives value counts by State, after filtering for country= France
+
+# isin - to compare with multiple strings
+cond = (sales['Year'] == 2016) & (sales['Month'].isin(['May', 'June', 'July']))
+sales.loc[cond].shape[0]
+
+sales.loc[(sales['Month'].isin(['May','June','July'])) & (sales['Year']==2016)].shape[0]
+
+
+
+# Getting top records by value====
+sales.sort_values(['Revenue'],ascending=False).head(5) # sorts by revenue desc, and returns rows with top 5 revenue
+
+# top 1
+# way 1
+sales.sort_values(by='Revenue',ascending=False).head(1) # this also worked, so [] are not necessary then
+
+# way 2
+sales['Revenue'] == sales['Revenue'].max() # compares each row's revenue with max revenue, and adds a True/False after checking the condition
+
+cond = sales['Revenue'] == sales['Revenue'].max() 
+sales.loc[cond] # returns records matching the condition in cond
+OR
+sales.loc[sales['Revenue'] == sales['Revenue'].max()] # returns records matching the condition in []
+
+## 
+sales.loc[sales['Revenue']>10000,'Order_Quantity'].mean() # Gives mean of order_quantity where rev>10k, if order_quantity not mentioned, we get mean of all numeric columns
+
+
+/*Python allows you to put underscores in numbers for convenience. They're used to separate groups of numbers, much like commas do in non-programming. 
+Underscores are completely ignored in numbers, much like comments. So this:
+x = 1_000_000
+is interpreted to be the same as this:
+x = 1000000 */
+
+### new columns======
 sales['Calculated_Date']=sales['Year'].map(str)+ "-" + sales['Month'] + "-" + sales['Day'].map(str)
 sales['Calculated_Date'] = sales[['Year', 'Month', 'Day']].apply(lambda x: '{}-{}-{}'.format(x[0], x[1], x[2]), axis=1)
 # output
@@ -81,5 +126,8 @@ df.plot(kind='scatter',x='x_var',y='y_var')
 df[['val1','cat1']].boxplot(by='cat1')
 
 sales['Calculated_Date'].value_counts().plot(kind='line')
+
+profit_2016 = sales.loc[sales['Year'] == 2016, ['Profit', 'Month']]  # subsetting profit and month for 2016
+profit_2016.boxplot(by='Month', figsize=(14,6)) # grouped box plot per month with the profit values. Month in x-axis and profit plotted
 
 
