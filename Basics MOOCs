@@ -131,3 +131,12 @@ profit_2016 = sales.loc[sales['Year'] == 2016, ['Profit', 'Month']]  # subsettin
 profit_2016.boxplot(by='Month', figsize=(14,6)) # grouped box plot per month with the profit values. Month in x-axis and profit plotted
 
 
+#=======================================================
+range(6) - numbers 0,1,2,3,4,5
+
+# replacing space in column names with _
+labels = list(df.columns)  # gets a list of column names in the dataframe
+for i in range(6):
+    labels[i]= labels[i].replace(' ','_')
+# for index 0-5 inclusive, replaces space with _
+df.columns = labels  # sets df column names basis values in labels
