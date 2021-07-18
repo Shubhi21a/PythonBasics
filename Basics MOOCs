@@ -140,3 +140,7 @@ for i in range(6):
     labels[i]= labels[i].replace(' ','_')
 # for index 0-5 inclusive, replaces space with _
 df.columns = labels  # sets df column names basis values in labels
+
+# OR even simpler: 
+df.columns = [label.replace(' ', '_') for label in df.columns]
+df.head()
