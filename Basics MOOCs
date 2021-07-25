@@ -144,3 +144,21 @@ df.columns = labels  # sets df column names basis values in labels
 # OR even simpler: 
 df.columns = [label.replace(' ', '_') for label in df.columns]
 df.head()
+
+
+##========================================================
+##  Classes, OOPS
+
+class ClassName:
+    def __init__(self,var1,var2,var3):
+        self.var1= var1
+        self.var2 = var2
+        sef.var3 = var3
+        
+    def function_1 (self, new_var3):
+        self.var3 = new_var3
+    
+    def function_2 (self, percent):
+        return var2 * (1-percent)
+        
+   
