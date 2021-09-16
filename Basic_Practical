@@ -1,0 +1,26 @@
+import os as os
+import pandas as pd
+import numpy as np
+
+os.getcwd()
+
+df1 = pd.read_csv('path\\folder\\file.csv')
+
+df1.head()
+
+df1.info() # col names , non null count, data type
+
+df1.isnull().sum() # checking how many nulls are present in the df
+
+df1['Col1'].value_counts() # equivalent to table
+
+df1['Flag'] = df1['Col1'].apply(lambda x: 1 if x == 'Yes' else 0) # simple if else
+
+df2 = df1.select_dtypes(include = 'number') # subsetting only numeric data fields
+# https://pythonexamples.org/pandas-dataframe-select-columns-of-numeric-datatype/
+
+df2 = df2.drop(['col_name'], axis = 1) # removing column
+
+print(df2.columns)
+
+
